@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/shaiyaj.github.io/vasm/static/css/main.7fbd1b9f.css",
+    "main.js": "/shaiyaj.github.io/vasm/static/js/main.df2cc6dc.js",
+    "index.html": "/shaiyaj.github.io/vasm/index.html",
+    "main.7fbd1b9f.css.map": "/shaiyaj.github.io/vasm/static/css/main.7fbd1b9f.css.map",
+    "main.df2cc6dc.js.map": "/shaiyaj.github.io/vasm/static/js/main.df2cc6dc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7fbd1b9f.css",
+    "static/js/main.df2cc6dc.js"
+  ]
+}
