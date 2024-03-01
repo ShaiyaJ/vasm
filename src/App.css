@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Mono/");
+
+* {
+    color: white;
+    background-color: #1F2428;    
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
+
+button {
+    border-style: solid;
+    border-color: white;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    color: white;
+    background-color: white;  /* Modern Browsers */
+}
+
+.horizontalhr {
+    border: none;
+    height: auto;
+    width: 1px;
+    color: white;
+    background-color: white;  /* Modern Browsers */
+}
+
+.main {
+    display: flex;
+}
+
+.mainchild {
+    width: 50%;
+    margin: 10px;
+}
+
+.ramcontainer {
+    display: flex;
+}
+
+.memorycontainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.extra-wrapper-for-no-reason {
+    width: 50%;
+}
+
+.variablecontainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0px 10px;
+}
+
+.variablecontainer p {
+    margin: 2px;
+}
+
+.memory {
+    padding: 0px 15px;
+    width: 10px; 
+}
+
+.memory p {
+    margin: 2px auto;
+}
+
+.controlcontainer {
+    padding-bottom: 10px;
+}
+
+.text {
+    /* width: 100%;
+    height: 80%; */
+}
+
+.text textarea {
+    width: 49vw;
+    height: 75vh;
+
+    resize: none;
+    border-radius: 5px;
+
+    background-color: #24292E;
+}
+
+.container button {
+    width: 100%;
+}
+
+.decreasing-width {
+    float: right;
+    width: 90%;
+}
+
+.decreasing-width button {
+    text-align: left;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-style: none;
+}
