@@ -63,7 +63,16 @@ hr {
 
 .memory {
     padding: 0px 15px;
-    width: 10px; 
+    width: 20px; 
+}
+
+.memory:hover {
+    background-color: #24292E;
+    border-radius: 5px;
+    overflow-y: visible;
+    z-index: 99 !important;
+    width: 20px;
+    overflow-wrap: break-word;
 }
 
 .memory p {

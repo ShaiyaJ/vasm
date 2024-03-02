@@ -101,6 +101,7 @@ export default function tokenise(program: string): Program | number {
         let formattedLine = line.replace(/\/\/.*/gm, ""); // NEWCHANGE (changes)
         formattedLine = formattedLine.replace("\t", " ");        // Tabs to single spaces
         formattedLine = formattedLine.replace(/\s+/g, " ")       // Multispaces to single spaces
+        formattedLine = formattedLine.replace(/^ +/gm, "");      // Leading whitespace removal
 
         const parts = formattedLine.trim().split(" ");
 
@@ -125,12 +126,12 @@ export default function tokenise(program: string): Program | number {
         //     if (parts[1]) {operand = parts.slice(1)}
         // }
 
-        if (["HLT", "ADD", "SUB", "STA", "STO", "LDA", "BRA", "BRZ", "BRP", "INP", "OUT", "OTC", "DAT"].includes(parts[0])) {
-            temp_opcode = parts[0];
+        if (["HLT", "ADD", "SUB", "STA", "STO", "LDA", "BRA", "BRZ", "BRP", "INP", "OUT", "OTC", "DAT"].includes(parts[0].toUpperCase())) { // NEWCHANGE (lowercase)
+            temp_opcode = parts[0].toUpperCase();
             if (parts[1]) {operand = parts.slice(1)}
         } else {                                    // Otherwise it has opcode second
             // Handle DAT
-            if (line.includes("DAT")) {
+            if (line.includes("DAT") || line.includes("dat")) {
                 final_program.var_tracker[parts[0]] = assign_loc;
 
                 // Check for init value
@@ -144,7 +145,7 @@ export default function tokenise(program: string): Program | number {
                 final_program.pnt_tracker[parts[0]] = final_program.program.length;
             }
             
-            temp_opcode = parts[1];
+            temp_opcode = parts[1].toUpperCase();
             if (parts[2]) {operand = parts.slice(2)}
         }
 

@@ -2,17 +2,23 @@ import React, { useCallback, useRef, useState } from "react";
 
 import tokenise, { isValidProgram } from "../utils/token.ts";
 import type Program from "../utils/cpu.ts";
-import { clockCycle, newProgram } from "../utils/cpu.ts";
+import { clockCycle } from "../utils/cpu.ts";
 
 import Container from "./Container.tsx";
+
+let emergencyStop = false;
 
 function assemble(x: string, setProgram: any) {
     const t = tokenise(x);
 
     if (isValidProgram(t) === 1) { // NEWCHANGE
         console.log(t)
+        // @ts-ignore
+        // if isValidProgram returns 1 then t is number
+        window.alert(`Error on line ${t}\n>>>${x.split("\n")[t]}<<<`)
     } else {
         let new_prog = t;
+        emergencyStop = false;
 
         setProgram(new_prog);
     }
@@ -23,14 +29,26 @@ async function step(program: Program, setProgram: any) {
 
     const next_prog = clockCycle(program);
     const copy = Object.assign({}, next_prog);
+    
     setProgram(copy);
     await delay();              // Forces state updates to take effect IMMEDIATELY 
 }
 
 async function run(program: Program, setProgram: any) {
     while (program.is_running) {    // Loop blocks state update
+        if (emergencyStop) break;
+
         await step(program, setProgram)
     }
+}
+
+async function stop(program: Program, setProgram: any) { //NEWCHANGE
+    console.log("STOP");
+    const delay = () => new Promise((resolve) => setTimeout(resolve, 0));
+
+    emergencyStop = true;
+
+    await delay();              // Forces state updates to take effect IMMEDIATELY 
 }
 
 function downloadFile(filename: string, data: string /*base64*/) {
@@ -86,6 +104,7 @@ function ControlPanel({ program, setProgram }: { program: Program, setProgram: a
                 <button onClick={(e) => {assemble(rawProgram, setProgram);}}>Assemble</button>
                 <button onClick={(e) => {run(program, setProgram);}}>Run</button>
                 <button onClick={(e) => {step(program, setProgram)}}>Step</button>
+                <button onClick={(e) => {stop(program, setProgram)}}>Stop</button>
             </div>
         </div>
     )

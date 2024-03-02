@@ -60,7 +60,6 @@ export function newProgram(): Program {
     }
 }
 
-
 // Arithmetic
 
 function add(prog: Program, location: number) {
@@ -261,6 +260,7 @@ export function execute(x: Program, instruction: Command): Program {
 }
 
 export function clockCycle(x: Program): Program {
+
     let prog = x;
 
     prog = fetch(prog);
